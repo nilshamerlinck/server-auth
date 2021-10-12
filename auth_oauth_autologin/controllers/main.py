@@ -1,11 +1,15 @@
 # Copyright 2021 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import logging
 import werkzeug
 
 from odoo import http
 
 from odoo.addons.auth_oauth.controllers.main import OAuthLogin
+
+
+_logger = logging.getLogger(__name__)
 
 
 class OAuthAutoLogin(OAuthLogin):
@@ -17,6 +21,7 @@ class OAuthAutoLogin(OAuthLogin):
         )
 
     def _autologin_link(self):
+        _logger.info(self.list_providers())
         providers = [p for p in self.list_providers() if p.get("autologin")]
         if len(providers) == 1:
             return providers[0].get("auth_link")

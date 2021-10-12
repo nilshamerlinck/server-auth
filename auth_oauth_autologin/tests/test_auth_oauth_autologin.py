@@ -1,9 +1,13 @@
 # Copyright 2021 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import logging
 import requests
 
 from odoo.tests.common import HOST, PORT, HttpCase
+
+
+_logger = logging.getLogger(__name__)
 
 
 class TestAuthMethod(HttpCase):
